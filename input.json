@@ -1,3 +1,28 @@
 {
-
+  "CoronaVisualizerStack-StateTable9728C7E5-OZJ97BX7QY9V": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "MA"
+          },
+          "name": {
+            "S": "Massachusetts"
+          },
+          "date": {
+            "S": "2020-03-11T22:53:03"
+          },
+          "newCases":{
+            "S":"95"
+          },
+          "deaths":{
+            "S":"0"
+          },
+          "recovered":{
+            "S":"1"
+          }
+        }
+      }
+    }
+  ]
 }

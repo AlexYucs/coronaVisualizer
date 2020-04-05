@@ -8,6 +8,7 @@ type State {
 }
 
 input SaveStateInput {
+    name: String!
     date: String!
     newCases: Int
     deaths: Int
