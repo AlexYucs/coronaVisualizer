@@ -1,0 +1,23 @@
+type State {
+    id: String!
+    name: String!
+    date: String!
+    newCases: Int
+    deaths: Int
+    recovered: Int
+}
+
+input SaveStateInput {
+    date: String!
+    newCases: Int
+    deaths: Int
+    recovered: Int
+}
+
+type Query {
+    getState(id: String): State
+}
+
+type Mutation {
+    addState(state: SaveStateInput!): State
+}

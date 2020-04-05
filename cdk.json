@@ -1,0 +1,3 @@
+{
+  "app": "node bin/corona_visualizer.js"
+}
