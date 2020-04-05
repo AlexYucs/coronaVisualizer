@@ -1,6 +1,6 @@
 {
   "name": "corona_visualizer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/AlexYucs/coronaVisualizer.git"
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
-    "test": "jest",
+    "deploy": "cdk deploy",
     "upload": "aws dynamodb batch-write-item --request-items file://input.json"
   },
   "devDependencies": {
