@@ -1,12 +1,14 @@
-# Welcome to your CDK JavaScript project!
+# AWS CDK CoronaVisualizer
 
-This is a blank project for JavaScript development with CDK.
+AWS CDK Javascript project
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app. The build step is not required when using JavaScript.
+Structures:
+- Appsync
+- DynamoDB
 
 ## Useful commands
 
- * `npm run test`         perform the jest unit tests
  * `cdk deploy`           deploy this stack to your default AWS account/region
  * `cdk diff`             compare deployed stack with current state
  * `cdk synth`            emits the synthesized CloudFormation template
+ * `npm run upload`       batch write data from input.json into the dynamoDB

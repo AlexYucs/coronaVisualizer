@@ -9,7 +9,6 @@
     "corona_visualizer": "bin/corona_visualizer.js"
   },
   "scripts": {
-    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
     "deploy": "cdk deploy",
     "upload": "aws dynamodb batch-write-item --request-items file://input.json"
