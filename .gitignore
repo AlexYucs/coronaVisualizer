@@ -107,4 +107,5 @@ dist
 .cdk.staging
 cdk.out
 
+build/
 .idea
