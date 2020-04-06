@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <LandingPage msg="Welcome to Your Vue.js App"/>
+    <LandingPage msg="Covid-19 State Specific TimeLapse Data"/>
   </div>
 </template>
 

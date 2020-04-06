@@ -11,7 +11,7 @@
   },
   "scripts": {
     "cdk": "cdk",
-    "deploy": "cdk deploy",
+    "deploy": "npm run build && cdk deploy",
     "upload": "aws dynamodb batch-write-item --request-items file://input.json",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
