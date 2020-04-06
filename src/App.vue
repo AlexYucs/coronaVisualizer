@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <LandingPage msg="Covid-19 State Specific TimeLapse Data"/>
+    <LandingPage msg="Coronalytics US State Specific TimeLapse Data"/>
   </div>
 </template>
 
