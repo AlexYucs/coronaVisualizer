@@ -1,30 +1,36 @@
 <template>
   <div id="app">
-    <LandingPage msg="Coronalytics US State Specific TimeLapse Data"/>
+    <LandingPage />
   </div>
 </template>
 
 <script>
-import LandingPage from './components/LandingPage.vue'
+  import { components } from 'aws-amplify-vue'
+  import LandingPage from './components/LandingPage.vue'
 
-export default {
-  name: 'App',
-  components: {
-    LandingPage
+  export default {
+    name: 'App',
+    components: {
+      LandingPage,
+      ...components
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-.el-row {
-  width: 100%;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  .el-row {
+    width: 100%;
+  }
+
+  hr{
+    width: 200px;
+  }
 </style>

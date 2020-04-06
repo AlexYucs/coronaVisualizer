@@ -1,10 +1,10 @@
 <template>
   <el-container>
     <el-row justify="center">
-      <el-header>
-        <el-row justify="center"><h1>{{ msg }}</h1></el-row>
-      </el-header>
-      <el-row justify="center">
+      <h1>Coronalytics US Timelapse Data</h1>
+      <hr/>
+      <br/>
+      <h4>Select Your State:</h4>
         <el-select v-model="selectedState" placeholder="Select">
           <el-option
                   v-for="item in stateOptions"
@@ -13,11 +13,10 @@
                   :value="item.value">
           </el-option>`
         </el-select>
-      </el-row>
       <br/>
-      <el-row justify="center">
+      <br/>
+      <br/>
         <Chart :state=this.selectedState />
-      </el-row>
     </el-row>
   </el-container>
 </template>
@@ -31,7 +30,6 @@
       Chart
     },
     props: {
-      msg: String
     },
     data() {
       return {
