@@ -26,7 +26,10 @@
                 <div v-else-if="error" class="error apollo">An error occurred</div>
 
                 <!-- Result -->
-                <div v-else-if="data" class="result apollo">{{ data.getState || "Not Populated Yet" }}</div>
+                <div v-else-if="data" class="result apollo">
+                    <div v-if="data.getState" class="result worked apollo">{{ data.getState }}<TotalInfections /></div>
+                    <div v-else class="result empty apollo">"Not Populated Yet"</div>
+                 </div>
 
                 <!-- No result -->
                 <div v-else class="no-result apollo">No result :(</div>
@@ -36,10 +39,14 @@
 </template>
 
 <script>
+    import TotalInfections from './TotalInfections'
     export default {
         name: 'Chart',
         props: {
             id: String
+        },
+        components: {
+            TotalInfections
         }
     }
 </script>

@@ -35,11 +35,13 @@
     "@aws-cdk/aws-s3-deployment": "^1.31.0",
     "@aws-cdk/core": "^1.31.0",
     "apollo-boost": "^0.4.7",
+    "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
     "graphql": "^15.0.0",
     "vue": "^2.6.11",
-    "vue-apollo": "^3.0.3"
+    "vue-apollo": "^3.0.3",
+    "vue-chartjs": "^3.5.0"
   },
   "eslintConfig": {
     "root": true,
