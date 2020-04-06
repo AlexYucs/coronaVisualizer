@@ -16,7 +16,7 @@
       <br/>
       <br/>
       <br/>
-        <Chart :state=this.selectedState />
+        <Chart :id=this.selectedState />
     </el-row>
   </el-container>
 </template>
@@ -33,7 +33,7 @@
     },
     data() {
       return {
-        selectedState: "US",
+        selectedState: "MA",
         stateOptions: [
           { label: 'United States', value: 'US'},
           { label: 'ALABAMA', value: 'AL'},
