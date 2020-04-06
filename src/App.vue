@@ -5,14 +5,12 @@
 </template>
 
 <script>
-  import { components } from 'aws-amplify-vue'
   import LandingPage from './components/LandingPage.vue'
 
   export default {
     name: 'App',
     components: {
-      LandingPage,
-      ...components
+      LandingPage
     }
   }
 </script>
@@ -25,7 +23,7 @@
     text-align: center;
     color: #2c3e50;
   }
-  
+
   .el-row {
     width: 100%;
   }
