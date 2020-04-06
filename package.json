@@ -1,6 +1,7 @@
 {
   "name": "corona_visualizer",
   "version": "0.2.0",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/AlexYucs/coronaVisualizer.git"
