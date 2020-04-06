@@ -1,6 +1,6 @@
 {
   "name": "corona_visualizer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "cdk": "cdk",
-    "deploy": "npm run build && cdk deploy",
+    "deploy": "npm run build && cdk deploy --require-approval=never",
     "upload": "aws dynamodb batch-write-item --request-items file://input.json",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
