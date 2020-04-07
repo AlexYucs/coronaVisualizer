@@ -27,7 +27,10 @@
 
                 <!-- Result -->
                 <div v-else-if="data" class="result apollo">
-                    <div v-if="data.getState" class="result worked apollo">{{ data.getState }}<TotalInfections /></div>
+                    <div v-if="data.getState" class="result worked apollo">
+                        <el-row justify="center"><TotalInfections class="infectionChart" :chartData=data.getState />
+                        </el-row>
+                    </div>
                     <div v-else class="result empty apollo">"Not Populated Yet"</div>
                  </div>
 
@@ -40,6 +43,8 @@
 
 <script>
     import TotalInfections from './TotalInfections'
+
+    //TODO Scroll after chart updates
     export default {
         name: 'Chart',
         props: {
@@ -47,6 +52,24 @@
         },
         components: {
             TotalInfections
+        },
+        data() {
+            return {
+            }
         }
     }
 </script>
+
+<style>
+    .infectionChart{
+        width: 700px;
+        margin: auto;
+    }
+    @media only screen and (max-width: 481px){
+        .infectionChart{
+            width: 90%;
+            margin: auto;
+        }
+    }
+
+</style>
