@@ -1,11 +1,26 @@
 # AWS CDK CoronaVisualizer
 
-AWS CDK Javascript project
+An AWS CDK project using Vue.js to model Coronavirus data for US States.
 
-Structures:
+## Prerequisites:
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+
+
+## AWS CDK Structures:
 - Appsync for Graphql
 - DynamoDB
 - S3 Bucket for Static Hosting
+
+
+## AWS Manual Setup Recommended:
+
+At the time of writing this, the CDK instructions for these were experimental.
+It was easier to set these up in AWS Console. 
+
+- Route53 for custom domain name route to S3
+- AWS Certificate Manager (ACM) for SSL Certificate
+- Cloudfront to use the SSL for HTTPS
+
 
 ## Useful commands
 
