@@ -33,7 +33,7 @@
     },
     data() {
       return {
-        selectedState: "MA",
+        selectedState: "AL",
         stateOptions: [
           { label: 'United States', value: 'US'},
           { label: 'ALABAMA', value: 'AL'},

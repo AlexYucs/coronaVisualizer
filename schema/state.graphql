@@ -5,10 +5,21 @@ type StateValues {
     recovered: Int
 }
 
+type MobilityValues {
+    reportDate: String!
+    residential: String!
+    recreation: String!
+    grocery: String!
+    parks: String!
+    transit: String!
+    work: String!
+}
+
 type State {
     id: String!
     name: String!
     days: [StateValues!]!
+    mobility: [MobilityValues!]!
 }
 
 type Query {
