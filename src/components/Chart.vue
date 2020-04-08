@@ -8,6 +8,15 @@
                     query getStateQuery ($id: String!) {
                       getState (id: $id){
                         name
+                        mobility{
+                            reportDate
+                            residential
+                            recreation
+                            grocery
+                            parks
+                            transit
+                            work
+                        }
                         days{
                           date
                           deaths
@@ -28,7 +37,7 @@
                 <!-- Result -->
                 <div v-else-if="data" class="result apollo">
                     <div v-if="data.getState" class="result worked apollo">
-                        <el-row justify="center"><TotalInfections class="infectionChart" :chartData=data.getState />
+                        <el-row justify="center"><TotalInfections class="infectionChart" :chartData=formatData(data.getState) />
                         </el-row>
                     </div>
                     <div v-else class="result empty apollo">"Not Populated Yet"</div>
@@ -53,8 +62,31 @@
         components: {
             TotalInfections
         },
-        data() {
+        data () {
             return {
+            }
+        },
+        methods: {
+            formatData(stateData){
+                const { days } = stateData;
+                const x_values = days.map(day => day.date.slice(5, 10));
+                const deaths = days.map(day => day.deaths);
+                const cases = days.map(day => day.cases);
+                return {
+                    labels: x_values,
+                    datasets: [
+                        {
+                            label: 'Total Deaths Over time Test Data',
+                            backgroundColor: '#0C7BDC',
+                            data: deaths
+                        },
+                        {
+                            label: 'Total Infections Over time',
+                            backgroundColor: '#FFC20A',
+                            data: cases
+                        },
+                    ]
+                };
             }
         }
     }
