@@ -52,7 +52,7 @@
                                 :show-tooltip="false"
                                 :max="data.getState.days.length">
                         </el-slider>
-                        <TotalInfections class="infectionChart" :chartData=formatData(data.getState) :options={responsive:true} />
+                        <TotalInfections class="infectionChart"  :chartData=formatData(data.getState) :options=chartOptions />
                     </el-row>
                  </div>
 
@@ -88,6 +88,10 @@
                     labels: [],
                     datasets: []
                 },
+                chartOptions:{
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
                 stateData: {}
             }
         },
@@ -116,6 +120,8 @@
             },
             checkData(data){
                 if (data && data.getState){
+/*                    const container = this.$el.querySelector(".result");
+                    container && container.scrollIntoView();*/
 /*                    const { days } = data.getState;
                     const daysArrayLength = days.length;
                     const formattedDays = days.map(day => day.date.slice(5, 10));
@@ -140,18 +146,20 @@
 <style>
     .infectionChart{
         width: 700px;
+        height: 550px;
         margin: auto;
     }
     .loading{
         background-color: rgba(0, 0, 0, 0.1);
     }
     #dateSlider{
-        width: 700px;
+        width: 650px;
         margin: auto;
     }
     @media only screen and (max-width: 481px){
         .infectionChart{
             width: 90%;
+            height: 75%;
             margin: auto;
         }
         #dateSlider{

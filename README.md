@@ -34,6 +34,5 @@ It was easier to set these up in AWS Console.
  * `npm run deploy`       build and deploy this stack to your default AWS account/region
  
  ## TODO
- - Autoscroll on state selection
  - Mobility and Fatality Rate data section
  - New cases by day graph
