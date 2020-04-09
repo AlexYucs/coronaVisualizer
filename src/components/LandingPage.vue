@@ -1,11 +1,10 @@
 <template>
   <el-container>
     <el-row justify="center">
-      <h1>Coronalytics US Timelapse Data</h1>
+      <h1>Coronalytics US Covid-19 Data</h1>
       <hr/>
       <br/>
-      <h4>Select Your State:</h4>
-        <el-select v-model="selectedState" placeholder="Select">
+        <el-select label="State" v-model="selectedState" placeholder="Select">
           <el-option
                   v-for="item in stateOptions"
                   :key="item.value"
@@ -15,8 +14,7 @@
         </el-select>
       <br/>
       <br/>
-      <br/>
-        <Chart :id=this.selectedState />
+      <Chart :id=this.selectedState />
     </el-row>
   </el-container>
 </template>

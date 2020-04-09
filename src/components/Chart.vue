@@ -1,8 +1,5 @@
 <template>
     <el-row justify="center">
-        <el-header>
-            <el-row justify="center"><h1>{{ id }} Covid-19 Chart</h1></el-row>
-        </el-header>
         <ApolloQuery
                 :query="gql => gql`
                     query getStateQuery ($id: String!) {
@@ -29,22 +26,45 @@
         >
             <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
-                <div v-if="loading" class="loading apollo">Loading...</div>
+                <div v-if="loading" class="loading apollo">
+                    <el-row justify="center">
+                        Loading... <i class="el-icon-loading"></i>
+                        <TotalInfections class="infectionChart loading" :chartData=emptyData :options={responsive:true} />
+                    </el-row>
+                </div>
 
                 <!-- Error -->
                 <div v-else-if="error" class="error apollo">An error occurred</div>
 
                 <!-- Result -->
-                <div v-else-if="data" class="result apollo">
-                    <div v-if="data.getState" class="result worked apollo">
-                        <el-row justify="center"><TotalInfections class="infectionChart" :chartData=formatData(data.getState) />
-                        </el-row>
-                    </div>
-                    <div v-else class="result empty apollo">"Not Populated Yet"</div>
+                <div v-else-if="checkData(data)" class="result apollo">
+                    <el-row justify="center">
+                        <div v-if="data.getState.days[value[0]] && data.getState.days[value[1]-1]">
+                            <el-header>
+                                <el-row justify="center"><h1>{{ id }} Cases: {{data.getState.days[value[0]].date.slice(5, 10)}} to  {{data.getState.days[value[1]-1].date.slice(5, 10)}}</h1></el-row>
+                            </el-header>
+                        </div>
+                        <el-slider
+                                id="dateSlider"
+                                v-model="value"
+                                :change=sliderChanged()
+                                range
+                                show-stops
+                                :marks="marks"
+                                :show-tooltip="false"
+                                :max="data.getState.days.length">
+                        </el-slider>
+                        <TotalInfections class="infectionChart" :chartData=formatData(data.getState) :options={responsive:true} />
+                    </el-row>
                  </div>
 
                 <!-- No result -->
-                <div v-else class="no-result apollo">No result :(</div>
+                <div v-else class="no-result loading apollo">
+                    <el-row justify="center">
+                        Loading... <i class="el-icon-loading"></i>
+                        <TotalInfections class="infectionChart" :chartData=emptyData :options={responsive:true} />
+                    </el-row>
+                </div>
             </template>
         </ApolloQuery>
     </el-row>
@@ -64,29 +84,56 @@
         },
         data () {
             return {
+                value: 0,
+                marks:{},
+                emptyData: {
+                    labels: [],
+                    datasets: []
+                },
+                stateData: {}
             }
         },
         methods: {
             formatData(stateData){
                 const { days } = stateData;
-                const x_values = days.map(day => day.date.slice(5, 10));
-                const deaths = days.map(day => day.deaths);
-                const cases = days.map(day => day.cases);
+                const daysRange = days.slice(this.value[0], this.value[1]);
+                const x_values = daysRange.map(day => day.date.slice(5, 10));
+                const deaths = daysRange.map(day => day.deaths);
+                const cases = daysRange.map(day => day.cases);
                 return {
                     labels: x_values,
                     datasets: [
                         {
                             label: 'Total Deaths Over time Test Data',
-                            backgroundColor: '#0C7BDC',
+                            backgroundColor: '#0C7BDC', //rgba(12, 123, 220, 1)
                             data: deaths
                         },
                         {
                             label: 'Total Infections Over time',
-                            backgroundColor: '#FFC20A',
+                            backgroundColor: '#FFC20A', //rgba(255, 194, 10, 1)
                             data: cases
                         },
                     ]
                 };
+            },
+            checkData(data){
+                if (data && data.getState){
+/*                    const { days } = data.getState;
+                    const daysArrayLength = days.length;
+                    const formattedDays = days.map(day => day.date.slice(5, 10));
+                    this.marks = formattedDays[0];
+                    this.marks[daysArrayLength] = formattedDays[daysArrayLength-1];*/
+                    this.stateData = Object.assign({}, this.formatData(data.getState));
+
+
+                    return true;
+                }
+                return false;
+
+            },
+            sliderChanged(){
+                //TODO edit some label text
+                //console.log(this.value)
             }
         }
     }
@@ -97,9 +144,20 @@
         width: 700px;
         margin: auto;
     }
+    .loading{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    #dateSlider{
+        width: 700px;
+        margin: auto;
+    }
     @media only screen and (max-width: 481px){
         .infectionChart{
             width: 90%;
+            margin: auto;
+        }
+        #dateSlider{
+            width: 80%;
             margin: auto;
         }
     }
