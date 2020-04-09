@@ -8,8 +8,9 @@ An AWS CDK project using Vue.js to model Coronavirus data for US States.
 
 ## AWS CDK Structures:
 - Appsync for Graphql
-- DynamoDB
+- DynamoDB to store Covid-19 Data
 - S3 Bucket for Static Hosting
+- Lambda to scrape daily data from [NYT Github](https://github.com/nytimes/covid-19-data)
 
 
 ## AWS Manual Setup Recommended:
@@ -31,3 +32,9 @@ It was easier to set these up in AWS Console.
  * `npm run build`        compiles and minifies for production
  * `npm run lint`         lints and fixes files
  * `npm run deploy`       build and deploy this stack to your default AWS account/region
+ 
+ ## TODO
+ - Autoscroll on state selection
+ - Footer with github url
+ - Mobility and Fatality Rate data section
+ - New cases by day graph
