@@ -35,6 +35,5 @@ It was easier to set these up in AWS Console.
  
  ## TODO
  - Autoscroll on state selection
- - Footer with github url
  - Mobility and Fatality Rate data section
  - New cases by day graph
