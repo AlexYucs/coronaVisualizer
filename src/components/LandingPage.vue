@@ -1,9 +1,6 @@
 <template>
   <el-container>
     <el-row justify="center">
-      <h1>Coronalytics US Covid-19 Data</h1>
-      <hr/>
-      <br/>
         <el-select label="State" v-model="selectedState" placeholder="Select">
           <el-option
                   v-for="item in stateOptions"

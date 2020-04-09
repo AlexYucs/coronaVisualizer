@@ -40,9 +40,7 @@
                 <div v-else-if="checkData(data)" class="result apollo">
                     <el-row justify="center">
                         <div v-if="data.getState.days[value[0]] && data.getState.days[value[1]-1]">
-                            <el-header>
-                                <el-row justify="center"><h1>{{ id }} Cases: {{data.getState.days[value[0]].date.slice(5, 10)}} to  {{data.getState.days[value[1]-1].date.slice(5, 10)}}</h1></el-row>
-                            </el-header>
+                            <el-row justify="center"><h1>{{ id }} Cases: {{data.getState.days[value[0]].date.slice(5, 10)}} to  {{data.getState.days[value[1]-1].date.slice(5, 10)}}</h1></el-row>
                         </div>
                         <el-slider
                                 id="dateSlider"
@@ -161,5 +159,4 @@
             margin: auto;
         }
     }
-
 </style>
