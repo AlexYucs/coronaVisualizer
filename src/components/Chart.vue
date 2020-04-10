@@ -5,15 +5,6 @@
                     query getStateQuery ($id: String!) {
                       getState (id: $id){
                         name
-                        mobility{
-                            reportDate
-                            residential
-                            recreation
-                            grocery
-                            parks
-                            transit
-                            work
-                        }
                         days{
                           date
                           deaths

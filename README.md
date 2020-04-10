@@ -1,4 +1,4 @@
-# AWS CDK CoronaVisualizer
+# Serverless AWS CDK CoronaVisualizer
 
 An AWS CDK project using Vue.js to model Coronavirus data for US States.
 
@@ -10,7 +10,9 @@ An AWS CDK project using Vue.js to model Coronavirus data for US States.
 - Appsync for Graphql
 - DynamoDB to store Covid-19 Data
 - S3 Bucket for Static Hosting
-- Lambda to scrape daily data from [NYT Github](https://github.com/nytimes/covid-19-data)
+- Lambda to scrape data from [NYT Github](https://github.com/nytimes/covid-19-data)
+- Iam to get permissions for dynamodb:BatchWriteItem
+- Events to set up a cron job for the Lambda function
 
 
 ## AWS Manual Setup Recommended:
