@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-row justify="center">
-        <el-select label="State" v-model="selectedState" placeholder="Select">
+        <el-select label="State" v-model="selectedState" placeholder="Select" filterable no-match-text="No matching data">
           <el-option
                   v-for="item in stateOptions"
                   :key="item.value"
@@ -30,7 +30,6 @@
       return {
         selectedState: "AL",
         stateOptions: [
-          { label: 'United States', value: 'US'},
           { label: 'ALABAMA', value: 'AL'},
           { label: 'ALASKA', value: 'AK'},
           { label: 'ARIZONA', value: 'AZ'},
