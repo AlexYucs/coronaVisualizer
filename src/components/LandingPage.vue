@@ -29,7 +29,7 @@
             <el-row justify="center" :gutter="20">
                 <div v-for="(value, name) in stateCharts" :key="name" class="row">
                     <div class="desktop">
-                        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11" :offset="2" >
+                        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="9" :offset="2" >
                             <Chart class="chart" :id="value.stateId" :removeState="removeState" />
                         </el-col>
                     </div>
@@ -191,7 +191,7 @@
     .mobile{
         display: none;
     }
-    @media only screen and (max-width: 1500px){
+    @media only screen and (max-width: 1600px){
         .desktop{
             display: none;
         }
