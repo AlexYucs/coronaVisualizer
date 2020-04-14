@@ -45,6 +45,12 @@
                                 :max="data.getState.days.length">
                         </el-slider>
                         <TotalInfections class="infectionChart"  :chartData=formatData(data.getState) :options=chartOptions />
+                        <el-switch
+                                class="switch"
+                                v-model="totalMode"
+                                active-text="Total"
+                                inactive-text="New">
+                        </el-switch>
                     </el-row>
                  </div>
 
@@ -75,6 +81,7 @@
         },
         data () {
             return {
+                totalMode:true,
                 value: 0,
                 marks:{},
                 emptyData: {
@@ -96,18 +103,31 @@
                 const { days } = stateData;
                 const daysRange = days.slice(this.value[0], this.value[1]);
                 const x_values = daysRange.map(day => day.date.slice(5, 10));
-                const deaths = daysRange.map(day => day.deaths);
-                const cases = daysRange.map(day => day.cases);
+                let total_cases = 0;
+                let total_deaths = 0;
+                const deaths = this.totalMode? daysRange.map(day => day.deaths ) : daysRange.map(day => {
+                    const new_deaths = day.deaths - total_deaths;
+                    total_deaths = day.deaths;
+                    return new_deaths;
+                });
+                const cases = this.totalMode? daysRange.map(day => day.cases ) : daysRange.map(day => {
+                    const new_cases = day.cases - total_cases;
+                    total_cases = day.cases;
+                    return new_cases;
+                });
+
+                const death_label = this.totalMode? 'Total Deaths Over time' : 'Deaths Per a Day';
+                const cases_label = this.totalMode? 'Total Infections Over time' : 'Cases Per a Day';
                 return {
                     labels: x_values,
                     datasets: [
                         {
-                            label: 'Total Deaths Over time Test Data',
+                            label: death_label,
                             backgroundColor: '#0C7BDC', //rgba(12, 123, 220, 1)
                             data: deaths
                         },
                         {
-                            label: 'Total Infections Over time',
+                            label: cases_label,
                             backgroundColor: '#FFC20A', //rgba(255, 194, 10, 1)
                             data: cases
                         },
@@ -148,6 +168,11 @@
 </script>
 
 <style>
+    .switch{
+        float:right;
+        padding-top: 15px;
+        padding-left: 300px;
+    }
     .infectionChart{
         width: 700px;
         height: 550px;
