@@ -31,7 +31,8 @@
                 <div v-else-if="checkData(data)" class="result apollo">
                     <el-row justify="center">
                         <div v-if="data.getState.days[value[0]] && data.getState.days[value[1]-1]">
-                            <el-row justify="center"><h1>{{ id }} Cases: {{data.getState.days[value[0]].date.slice(5, 10)}} to  {{data.getState.days[value[1]-1].date.slice(5, 10)}}</h1></el-row>
+                            <el-row justify="center"><h1>{{ id }} Cases: {{data.getState.days[value[0]].date.slice(5, 10)}} to {{data.getState.days[value[1]-1].date.slice(5, 10)}}   <i class="el-icon-delete" @click="removeStateChart"></i></h1>
+                            </el-row>
                         </div>
                         <el-slider
                                 id="dateSlider"
@@ -66,7 +67,8 @@
     export default {
         name: 'Chart',
         props: {
-            id: String
+            id: String,
+            removeState: Function
         },
         components: {
             TotalInfections
@@ -81,7 +83,10 @@
                 },
                 chartOptions:{
                     responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    animation:{
+                        onComplete: this.autoScroll
+                    }
                 },
                 stateData: {}
             }
@@ -128,7 +133,15 @@
             },
             sliderChanged(){
                 //TODO edit some label text
-                //console.log(this.value)
+                //console.log(this.value);
+                //this.reset = false;
+            },
+            removeStateChart(){
+                this.removeState(this.id);
+            },
+            autoScroll(){
+                const container = this.$el.querySelector(".result");
+                container && container.scrollIntoView();
             }
         }
     }
@@ -144,7 +157,7 @@
         background-color: rgba(0, 0, 0, 0.1);
     }
     #dateSlider{
-        width: 650px;
+        width: 700px;
         margin: auto;
     }
     @media only screen and (max-width: 481px){

@@ -4,11 +4,12 @@
         <el-select
                 label="State"
                 v-model="selectedState"
-                placeholder="Select"
+                placeholder="Add a State"
                 filterable
                 no-match-text="No matching data"
                 :filter-method="filterSearch"
                 @visible-change	="filterReset"
+                @change="addState"
         >
           <el-option
                   v-for="item in stateOptions"
@@ -19,13 +20,32 @@
         </el-select>
       <br/>
       <br/>
-      <Chart :id=this.selectedState />
+        <div v-if="Object.keys(stateCharts).length<=1" >
+            <div v-for="(value, name) in stateCharts" :key="name" class="row">
+                <Chart :id="value.stateId" :removeState="removeState" />
+            </div>
+        </div>
+        <div v-else >
+            <el-row justify="center" :gutter="20">
+                <div v-for="(value, name) in stateCharts" :key="name" class="row">
+                    <div class="desktop">
+                        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11" :offset="2" >
+                            <Chart class="chart" :id="value.stateId" :removeState="removeState" />
+                        </el-col>
+                    </div>
+                    <div class="mobile">
+                        <Chart :id="value.stateId" :removeState="removeState" />
+                    </div>
+                </div>
+            </el-row>
+        </div>
     </el-row>
   </el-container>
 </template>
 
 <script>
-  import Chart from './Chart.vue'
+  import Chart from './Chart.vue';
+  import Vue from 'vue';
 
   export default {
     name: 'LandingPage',
@@ -37,16 +57,25 @@
         const formattedInput = input.toUpperCase();
         this.stateOptions = this.stateList.filter(state => state.label.includes(formattedInput) || state.value === formattedInput);
       },
-      filterReset(){
-        console.log(JSON.stringify("resetting", null, 2));
-        this.stateOptions = this.stateList;
-      }
+        filterReset(){
+          this.stateOptions = this.stateList;
+          },
+        addState(){
+            this.stateCharts[this.selectedState] = {stateId:this.selectedState};
+            this.selectedState="";
+        },
+        removeState(stateId){
+            Vue.delete(this.stateCharts, stateId);
+        },
     },
     props: {
     },
     data() {
       return {
-        selectedState: "AL",
+          stateCharts:{
+            "MA":{stateId:"MA"},
+          },
+        selectedState: "",
         stateList: [
           { label: 'ALABAMA', value: 'AL'},
           { label: 'ALASKA', value: 'AK'},
@@ -157,3 +186,17 @@
     }
 }
 </script>
+
+<style>
+    .mobile{
+        display: none;
+    }
+    @media only screen and (max-width: 1500px){
+        .desktop{
+            display: none;
+        }
+        .mobile{
+            display: inline-block;
+        }
+    }
+</style>
