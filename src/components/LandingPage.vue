@@ -22,7 +22,9 @@
       <br/>
         <div v-if="Object.keys(stateCharts).length<=1" >
             <div v-for="(value, name) in stateCharts" :key="name" class="row">
-                <Chart :id="value.stateId" :removeState="removeState" />
+                <div class="solo">
+                    <Chart :id="value.stateId" :removeState="removeState" />
+                </div>
             </div>
         </div>
         <div v-else >
@@ -188,6 +190,9 @@
 </script>
 
 <style>
+    .solo{
+        display: inline-block;
+    }
     .mobile{
         display: none;
     }

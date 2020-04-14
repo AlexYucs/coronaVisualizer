@@ -171,7 +171,7 @@
     .switch{
         float:right;
         padding-top: 15px;
-        padding-left: 300px;
+        padding-bottom: 30px;
     }
     .infectionChart{
         width: 700px;
